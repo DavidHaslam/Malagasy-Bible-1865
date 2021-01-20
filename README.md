@@ -8,7 +8,7 @@ La première Bible malgache a été éditée en 1835, traduite par le missionnai
 The first Malagasy Bible was published in 1835, translated by Welsh missionary David Griffiths (1792-1863) of the [London Missionary Society](https://en.wikipedia.org/wiki/London_Missionary_Society). It underwent its first revision between 1865 and 1866.
 
 ### Source texts ###
-The source text used as the starting point for this project was obtained on 2018-12-18 from the website of [Madagascar Pour Christ](https://web.archive.org/web/20181218163116/http://madabibliq.org:80/) that subsequently went AWOL.
+The source text used as the starting point for this project was obtained on 2018-12-18 from the website of [MadaBibliq](https://web.archive.org/web/20181218163116/http://madabibliq.org:80/) that subsequently went AWOL.
 
 *The original URL is now occupied by a domain squatter, so the above link is to an archived copy on the **Wayback Machine**.*
 
