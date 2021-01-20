@@ -26,8 +26,8 @@ This is entitled **Ny Soratra Masina, dia ny Testamenta Taloha sy ny Testamenta 
 
 This was published in 1889 by the [British and Foreign Bible Society](https://www.biblesociety.org.uk/), is held by the [University of Toronto](https://www.utoronto.ca/), and scanned in 2014. AFAICT, this has not been converted to a usable electronic text.
 
-## License ##
+### License ###
 The Malagasy Bible (1865) is Public Domain.
 
-## Project status ##
+### Project status ###
 Source files and derived files are yet to be uploaded.
