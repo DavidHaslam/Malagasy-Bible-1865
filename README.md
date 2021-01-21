@@ -30,19 +30,22 @@ This is entitled **Ny Soratra Masina, dia ny Testamenta Taloha sy ny Testamenta 
 
 This was published in 1889 by the [British and Foreign Bible Society](https://www.biblesociety.org.uk/), is held by the [University of Toronto](https://www.utoronto.ca/), and scanned in 2014. AFAICT, this has not been converted to a usable electronic text. Nevertheless, this may be useful as a reference work to resolve issues with the digitised source text.
 
-### Text development ###
+### License ###
+The Malagasy Bible (1865) is Public Domain.
+
+### Project aims ###
+The main aim of this project is to derive an input file in **OSIS** XML format suitable for making a SWORD module for use with Bible study front-end apps associated with the [CrossWire Bible Society](https://crosswire.org/).
+
+#### Text development ####
 I did a significant amount of detailed text development during December 2018. 
 
 Many of the details are recorded in my email conversations with this [developer](https://github.com/refdoc).
 
-### Versification ###
+#### Versification ####
 So far, the best fit versification for SWORD is **German** even though the Malagasy Bible was also published as a parallel text edition with a French Bible.
 
 See [La BIBLE Franco-Malgache](https://web.archive.org/web/20181206105212fw_/http://www.madabibliq.org/Bible_franco-malgache/Bible_table_matieres.htm) **En colonnes parallèles côte à côte, la Bible en français (traduction J.N. Darby) et la Bible Malgache.** 
 
-### License ###
-The Malagasy Bible (1865) is Public Domain.
-
-### Project status ###
+#### Project status ####
 Source files and derived files are yet to be uploaded.
 
