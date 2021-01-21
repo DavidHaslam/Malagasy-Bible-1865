@@ -46,6 +46,9 @@ So far, the best fit versification for SWORD is **German** even though the Malag
 
 See [La BIBLE Franco-Malgache](https://web.archive.org/web/20181206105212fw_/http://www.madabibliq.org/Bible_franco-malgache/Bible_table_matieres.htm) **En colonnes parallèles côte à côte, la Bible en français (traduction J.N. Darby) et la Bible Malgache.** 
 
+##### Psalm titles #####
+The canonical Psalm titles were incorrectly versified in the source XML file. It was necessary to reversify these as verse 1 (sometimes 1-2) and renumber the subsequent verses in such Psalms.
+
 #### Project status ####
 Source files and derived files are yet to be uploaded.
 
