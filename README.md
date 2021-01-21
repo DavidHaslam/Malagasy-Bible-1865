@@ -12,6 +12,8 @@ The source text used as the starting point for this project was obtained on 2018
 
 *The original URL is now occupied by a domain squatter, so the above link is to an archived copy on the **Wayback Machine**.*
 
+One of the downloads on the **Concordance** page is particularly useful by being in Zefania like XML format, which can be downloaded from the following [link](https://web.archive.org/web/20181122034615/http://madabibliq.org/Concordance-malagasy/Linux_Bibliquest_Concordance_Malgache-2.1.0.tar.bz2) as a file in .tar.bz2 Linux compressed format. This contains an XML file called **malgache_malgache.xml** and was designed for use with [Bibliquest](https://www.bibliquest.net/) Bible software.
+
 The sister website **Madagascar pour Christ** now redirects to [Henoy Ny Baiboly](https://nybaiboly.net/).
 
 This page has the [Malagasy Bible](https://nybaiboly.net/Bible.htm) available in both **.htm** and **.doc** format, just as the earlier website did.
@@ -20,14 +22,27 @@ NB. *I have not yet checked whether any editing changes were made after December
 
 It is not known how accurately transcribed the above digitised text source is relative to the corresponding printed edition of the Malagasy Bible.
 
+### Reference work ###
+
 A scanned library copy of the **1887 Edition** of the Malagasy Bible with 1656 pages has been found [here](https://archive.org/details/nysoratramasinad00lond).
 
 This is entitled **Ny Soratra Masina, dia ny Testamenta Taloha sy ny Testamenta Vaovao; Nadika avy tamy ny teny Hebreo sy Grika. (Revision Committee's Version, 1887)**.
 
-This was published in 1889 by the [British and Foreign Bible Society](https://www.biblesociety.org.uk/), is held by the [University of Toronto](https://www.utoronto.ca/), and scanned in 2014. AFAICT, this has not been converted to a usable electronic text.
+This was published in 1889 by the [British and Foreign Bible Society](https://www.biblesociety.org.uk/), is held by the [University of Toronto](https://www.utoronto.ca/), and scanned in 2014. AFAICT, this has not been converted to a usable electronic text. Nevertheless, this may be useful as a reference work to resolve issues with the digitised source text.
+
+### Text development ###
+I did a significant amount of detailed text development during December 2018. 
+
+Many of the details are recorded in my email conversations with this [developer](https://github.com/refdoc).
+
+### Versification ###
+So far, the best fit versification for SWORD is **German** even though the Malagasy Bible was also published as a parallel text edition with a French Bible.
+
+See [La BIBLE Franco-Malgache](https://web.archive.org/web/20181206105212fw_/http://www.madabibliq.org/Bible_franco-malgache/Bible_table_matieres.htm) **En colonnes parallèles côte à côte, la Bible en français (traduction J.N. Darby) et la Bible Malgache.** 
 
 ### License ###
 The Malagasy Bible (1865) is Public Domain.
 
 ### Project status ###
 Source files and derived files are yet to be uploaded.
+
