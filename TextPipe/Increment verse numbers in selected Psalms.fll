@@ -1,0 +1,204 @@
+﻿{
+  "formatName": "TextPipe_FLL",
+  "formatVersion": "1.0",
+  "trialInput": "You can type sample text in \r\nthe Trial Run Input Area to\r\ntest if your filter is working \r\nproperly. Click the [Trial Run]\r\nbutton below to start the test.\r\n\r\nYou can also perform Partial Trial \r\nRuns by right-clicking on filters\r\nin the Filter list.\r\n\r\nTo clear this text, just right \r\nclick it and select 'Clear Entire \r\nField' from the menu. Most \r\nof TextPipe's fields have \r\nsimilar helpful menus.\r\n",
+  "Logging": {
+    "expanded": true,
+    "enabled": true,
+    "filename": ".\\textpipe.log",
+    "append": false,
+    "threshold": 500,
+    "commentFilters": true
+  },
+  "Files": [
+    {
+      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\malgache_malgache.xml",
+      "subfolder": "None",
+      "action": "Include"
+    }
+  ],
+  "Filters": {
+    "Input": {
+      "binaryFiles": 0,
+      "inputFromFiles": 1,
+      "insideCompressed": false
+    },
+    "Comment": {
+      "expanded": true,
+      "value": "Increment verse numbers in selected Psalms\r\n\r\nNB.  Joined last 2 verses in Psalm 13 to match PDF.\r\n\r\nPs.15.6 is not in the German versification. Appending content to Ps.15.5\r\nTherefore I suspect the 1897 PDF has wrong v11n for Psalm 15.\r\ncf. French Synodale has only 5 verses.\r\n\r\nTBD. Move footnotes that might end up in the wrong place!\r\n     Example: Psalms 120ff titles (Song of Ascent)\r\nOK.  As long as \\d are added AFTER converting footnotes.\r\n     i.e. When replacing \"¬\" by \"\\n\\\\p\" \r\n",
+      "SubFilters": {
+        "Search": {
+          "expanded": true,
+          "search": "<book number=\"18\" title=\"Salamo\">(.+)<\/book>",
+          "replace": "",
+          "ignoreCase": false,
+          "patternType": 1,
+          "replaceType": 4,
+          "bufferSize": 300000,
+          "greedy": false,
+          "dotMatchesNewLines": true,
+          "utf8support": true,
+          "SubFilters": {
+            "Comment": {
+              "value": "Increment 59 Psalms by 1\r\n\r\nRemoved 15 from the list.",
+              "SubFilters": {
+                "Search": {
+                  "search": "<chapter number=\"(3|4|5|6|7|8|9|12|13|18|19|20|21|22|30|31|34|36|38|39|40|41|42|44|45|46|47|48|49|53|55|56|57|58|59|61|62|63|64|65|67|68|69|70|75|76|77|80|81|83|84|85|88|89|92|102|108|140|142)\">(.+)<\/chapter>",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 5,
+                  "bufferSize": 300000,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "Search": {
+                      "expanded": true,
+                      "search": "<verse number=\"1\">",
+                      "replace": "",
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "replaceType": 3,
+                      "bufferSize": 300000,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "SubFilters": {
+                        "Search": {
+                          "expanded": true,
+                          "search": "<verse number=\"(.+)\">",
+                          "replace": "",
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "replaceType": 4,
+                          "bufferSize": 300000,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "SubFilters": {
+                            "Maths": {
+                              "filterType": 1,
+                              "operation": 0,
+                              "operand": 0,
+                              "operandFloat": 1
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Increment 4 Psalms by 2",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "<chapter number=\"(51|52|54|60)\">(.+)<\/chapter>",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 5,
+                  "bufferSize": 300000,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "Search": {
+                      "expanded": true,
+                      "search": "<verse number=\"1\">",
+                      "replace": "",
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "replaceType": 3,
+                      "bufferSize": 300000,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "SubFilters": {
+                        "Search": {
+                          "expanded": true,
+                          "search": "<verse number=\"(.+)\">",
+                          "replace": "",
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "replaceType": 4,
+                          "bufferSize": 300000,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "SubFilters": {
+                            "Maths": {
+                              "filterType": 1,
+                              "operation": 0,
+                              "operand": 0,
+                              "operandFloat": 2
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Insert new verse elements at marked locations in verse 1 text\r\n\r\n ¬ marks the end of canonical title (count = 116)\r\n | marks the start of verse 2 text  (count =  63)\r\n ¦ marks the start of verse 3 text  (count =   4)\r\n \r\n\r\n\r\n",
+              "SubFilters": {
+                "Search": {
+                  "search": "\\x7C",
+                  "replace": "<\/verse>\\n            <verse number=\"2\">",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true
+                },
+                "Search": {
+                  "search": "\\xA6",
+                  "replace": "<\/verse>\\n            <verse number=\"3\">",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true
+                },
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": true,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["\\s+(<\/verse>)", "$1"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "TBD: Mark the canonical titles in 116 Psalms\r\n\r\n - \\d \\v 1 canonical title (51 Psalms)\r\n   \\p start of normal verse text\r\n\r\n - \\d \\v 1 canonical title (61 Psalms)\r\n   \\p \\v 2 start of normal verse text\r\n\r\n - \\d \\v 1 canonical title ( 4 Psalms)\r\n   \\d \\v 2 canonical title continued\r\n   \\p \\v 3 start of normal verse text\r\n"
+            }
+          }
+        }
+      }
+    },
+    "Output": {
+      "retainDateTime": false,
+      "outputToFile": 1,
+      "changeExtension": true,
+      "newExtension": ".try@inputExtension",
+      "changeBaseDir": false,
+      "newBaseDir": "C:\\",
+      "singleFilename": "%USERPROFILE%\\mergefilename.txt",
+      "append": false,
+      "onlyOutputChangedFiles": 1,
+      "openOutputOnCompletion": true,
+      "ignoreStartFolder": false,
+      "isPrimary": true
+    }
+  }
+}

@@ -1,0 +1,84 @@
+﻿{
+  "formatName": "TextPipe_FLL",
+  "formatVersion": "1.0",
+  "trialInput": "You can type sample text in \r\nthe Trial Run Input Area to\r\ntest if your filter is working \r\nproperly. Click the [Trial Run]\r\nbutton below to start the test.\r\n\r\nYou can also perform Partial Trial \r\nRuns by right-clicking on filters\r\nin the Filter list.\r\n\r\nTo clear this text, just right \r\nclick it and select 'Clear Entire \r\nField' from the menu. Most \r\nof TextPipe's fields have \r\nsimilar helpful menus.\r\n",
+  "Logging": {
+    "expanded": true,
+    "enabled": true,
+    "filename": ".\\textpipe.log",
+    "append": false,
+    "threshold": 500,
+    "commentFilters": true
+  },
+  "Files": [
+    {
+      "filename": "M:\\malgache_malgache.try.usfm",
+      "subfolder": "None",
+      "action": "Include"
+    }
+  ],
+  "Filters": {
+    "Input": {
+      "binaryFiles": 0,
+      "inputFromFiles": 1,
+      "insideCompressed": false
+    },
+    "Comment": {
+      "expanded": true,
+      "value": "Split a merged USFM file\r\n \r\nAssumes:\r\n subst m: <input_path>\r\n subst k: <output_path>\r\n\r\nThe 66 files may require renaming to include the book ID & project\r\n",
+      "SubFilters": {
+        "Columns": {
+          "expanded": true,
+          "filterType": 1,
+          "value": "2 .. -1",
+          "moveTo": 1,
+          "processIndividually": false,
+          "excludeDelimiter": false,
+          "excludeQuotes": false,
+          "delimiter": 0,
+          "customQualifier": "\"",
+          "hasHeader": false,
+          "SubFilters": {
+            "SearchList": {
+              "useFile": false,
+              "simultaneous": false,
+              "onlyLogOnReplace": true,
+              "ignoreCase": false,
+              "patternType": 1,
+              "greedy": false,
+              "dotMatchesNewLines": false,
+              "utf8support": true,
+              "items": [
+                ["^(\\\\id MAT)", "\\id ###\\r\\n$1"],
+                ["^(\\\\id )", "\\f$1"]
+              ]
+            }
+          }
+        },
+        "Split": {
+          "type": 1,
+          "splitSize": 1457664,
+          "pattern": "^\\f",
+          "splitCharCount": 1,
+          "splitCharPosition": 2,
+          "splitLines": 60,
+          "splitFilename": "%2.2d_mg1865.usfm",
+          "firstFileNumber": 1
+        }
+      }
+    },
+    "Output": {
+      "retainDateTime": false,
+      "outputToFile": 1,
+      "changeExtension": false,
+      "newExtension": ".txt",
+      "changeBaseDir": true,
+      "newBaseDir": "K:\\",
+      "singleFilename": "%USERPROFILE%\\mergefilename.txt",
+      "append": false,
+      "onlyOutputChangedFiles": 1,
+      "ignoreStartFolder": false,
+      "isPrimary": true
+    }
+  }
+}

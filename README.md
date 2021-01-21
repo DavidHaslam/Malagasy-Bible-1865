@@ -16,7 +16,7 @@ One of the downloads on the **Concordance** page is particularly useful by being
 
 The sister website **Madagascar pour Christ** now redirects to [Henoy Ny Baiboly](https://nybaiboly.net/).
 
-This page has the [Malagasy Bible](https://nybaiboly.net/Bible.htm) available in both **.htm** and **.doc** format, just as the earlier website did.
+This page also has the [Malagasy Bible](https://nybaiboly.net/Bible.htm) available in both **.htm** and **.doc** format, just as the earlier website did.
 
 NB. *I have not yet checked whether any editing changes were made after December 2018.*
 
@@ -50,5 +50,45 @@ See [La BIBLE Franco-Malgache](https://web.archive.org/web/20181206105212fw_/htt
 The canonical Psalm titles were incorrectly versified in the source XML file. It was necessary to reversify these as verse 1 (sometimes 1-2) and renumber the subsequent verses in such Psalms.
 
 #### Project status ####
-Source files and derived files are yet to be uploaded.
+Source files and derived files have now been uploaded.
 
+The folder structure is described below.
+
+#### XML
+This folder contains the **Bibliquest** XML source text as well as the preprocessed file in which the Psalm titles and versification were adjusted.
+
+#### XML\Analysis
+This folder contains several tab delimited external replace lists called by the main TextPipe filter.
+
+#### Merged USFM
+This folder contains a single output file in USFM format that then was subsequently split into 66 separate files.
+
+#### USFM
+This folder contains the 66 USFM files, one for each Bible book.
+
+#### CMD
+This folder contains two Windows CMD files:
+1. to assign substitute drive letters (used for analysis)
+2. to batch rename the 66 USFM files
+
+#### TextPipe
+This folder contains some of my TextPipe filters used for analysis and conversion tasks within this project.
+
+NB. The filters were last edited in December 2018 but have been resaved in the new *human readable* JSON format.
+
+#### OSIS
+This folder contains the OSIS XML file made from the USFM files using **adyeths\u2o** Python script.
+
+NB. The OSIS file was further post-processed without a change of filename.
+
+#### SWORD
+This folder contains the SWORD module **Mg1865x** made using the module tool called **osis2mod** from CrossWire.
+
+##### mods.d
+This folder contains the module configuration file.
+
+##### modules
+This folder contains the module data.
+
+##### Zip
+This folder contains an archived copy of the module made using the **Xiphos** maintenance feature.

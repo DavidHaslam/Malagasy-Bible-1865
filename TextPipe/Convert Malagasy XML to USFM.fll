@@ -1,0 +1,1548 @@
+﻿{
+  "formatName": "TextPipe_FLL",
+  "formatVersion": "1.0",
+  "trialInput": "You can type sample text in \r\nthe Trial Run Input Area to\r\ntest if your filter is working \r\nproperly. Click the [Trial Run]\r\nbutton below to start the test.\r\n\r\nYou can also perform Partial Trial \r\nRuns by right-clicking on filters\r\nin the Filter list.\r\n\r\nTo clear this text, just right \r\nclick it and select 'Clear Entire \r\nField' from the menu. Most \r\nof TextPipe's fields have \r\nsimilar helpful menus.\r\n",
+  "Logging": {
+    "expanded": true,
+    "enabled": true,
+    "filename": ".\\textpipe.log",
+    "append": false,
+    "threshold": 5000,
+    "commentFilters": true
+  },
+  "Files": [
+    {
+      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\malgache_malgache.try.xml",
+      "subfolder": "None",
+      "action": "Include"
+    }
+  ],
+  "Filters": {
+    "Input": {
+      "binaryFiles": 0,
+      "inputFromFiles": 1,
+      "insideCompressed": false
+    },
+    "Comment": {
+      "expanded": true,
+      "value": "Convert Malagasy XML to USFM\r\n\r\nOriginal XML file was first lightly edited, see:\r\n  - Analysis\\malgache_malgache.xml.diff\r\nIncludes:\r\n  - fixed some versification issues.\r\n  - added special marks for Psalms with titles.\r\n  - inserted 67 [Sela.] in Psalms.\r\n  - removed inner brackets from Mark.16:9-20 & John 7:53-8:11\r\n    & punctuated the end of each verse in both passages.\r\n  - fixed 14 whole verse footnotes that start [* Ampio hoe:\r\n  - fixed various typos.\r\n  - fixed spelling in 3 footnotes: Izaho => Izahao\r\n  - fixed invalid Roman number in Ezek 16:29\r\n      izaho xxvv 4 => izahao xvii. 4 (from PDF)\r\n\r\nPre-processing:  (separate filter) (incorporate here?)\r\n Adjust the versification for 64 Psalms!\r\n Split verse 1 at my added marks ¬|¦\r\n\r\nPost-processing: \r\n Split whole Bible into 66 USFM files (separate filter)\r\n Rename the USFM files (use a CMD file)\r\n Convert USFM to OSIS (using u2o.py)\r\n Replace Psalm titles by div elements (separate filter)\r\n TBD: Fix references (using orefs.py) (requires config file)\r\n TBD: Fix references not converted by orefs.",
+      "SubFilters": {
+        "Comment": {
+          "value": "Revision history:\r\n\r\n2018-12-26 Last working update to this filter\r\n2021-01-21 Resaved the filter in human readable JSON format\r\n           Added this comment filter as a record only\r\n\r\nNotes:\r\n1. Filter saved to the GitHub project folder TextPipe\r\n2. External lists should be copied to the same location\r\n3. Input path requires adjusting to suit this location\r\n4. Paths for external replace lists also require tweaking\r\n5. Postprocessing filters should be also copied here\r\n\r\n"
+        },
+        "Comment": {
+          "value": "Analysis:\r\n\r\nOutput USFM contains:\r\n 35646 lines\r\n    66 books & chapter labels\r\n  1189 chapters\r\n  1561 paragraphs\r\n 31165 verses of which\r\n  3676 start with a lowercase letter\r\n   695 end with no punctuation mark (or space)\r\n\r\n     5 major section titles [BOKY in PSA]\r\n   116 canonical Psalm titles\r\n    70 [Sela.] in Psalms & Habakkuk\r\n  1154 section titles   = from [bracketed text]....\r\n  2805 footnotes        = from ....[bracketed text]\r\n   298 cross-references = from (parenthesised text)\r\n   112 references within footnotes \\+xt ...\\+xt*\r\n  2694 items in italics \\+it ...\\+it*\r\n\r\nBrackets: \r\n    70 [Sela.]\r\n     9 notes with [...].\r\n     2 bracketed passages: Mark 16:9-20 & John 7:53-8:11\r\n     2 \\[.+?\\] now remaining in verse text:\r\n        [ary na ny Zanaka aza,]   in Mat.24.36\r\n        [araka an’ Andriamanitra] in 1 Pet.5.2\r\n\r\nParentheses:\r\n   476 \\(.+?\\) where . matches newline\r\n   452 \\(.+?\\) where . does not match newline\r\n       (7 contain a footnote, 1 contains a number)\r\n    14 are in ^\\\\v \\d+ \\(.+?\\)$ = (whole verse text)\r\n   478 ( There's 1 nested pair in 1 Sam.14.18\r\n   478 ) None remain unpaired\r\n\r\nHyphens: (commonly used to join words)\r\n  4050 hyphenated words include some with -dR or -tS\r\n       looks like an aspect of Malagasy hyphenation style\r\n       cf. no other instances of [[:lower:]][[:upper:]]\r\n\r\nReplaced all other hyphens by U+2015 horizontal bar\r\n\r\nReplaced all \\x27 by U+2019 typographical apostrophe (& space)\r\n\r\nApostrophes: (commonly used to join words)\r\n     0 at start of word in verse text\r\n     0 at end of a word in verse text\r\n     0 match \\w{2,}\\*'\\w+ (asterisk apostrophe)\r\n       but see further in Footnotes... \r\n       \r\nReferences: (with neither book name nor abbreviation)\r\n    16 [Ii]zahao \\\\\\x2Bxt \\d+\\. \\d+\\\\\\x2Bxt\\x2A\r\n          Izahao = See (the reference is in current book)\r\n          This word is italicised in footnotes.\r\n\r\n",
+          "SubFilters": {
+            "Comment": {
+              "value": "Versification\r\n\r\nWith v11n=German, only 9 emptyvss remain in SWORD module:\r\n\r\nNumbers 25:19\r\nDeuteronomy 5:31-33\r\nJoshua 17:18\r\nII Kings 15:39\r\nI Chronicles 12:41\r\nI Chronicles 27:34\r\nRevelation of John 12:18\r\n\r\nThis is after I inserted a ZWSP character in the 14 verses that\r\nare just a footnote, to prevent them being listed by emptyvss\r\n"
+            },
+            "Comment": {
+              "value": "Work in progress:\r\n\r\n - Review all word-wrap hyphens in the PDF.\r\n - Fixing word-wrap hyphenation errors..."
+            },
+            "Comment": {
+              "value": "Still to be done:\r\n\r\n - Check for missing punctuation (e.g. at end of verses with a footnote)\r\n   695 verses end without a punctuation mark!\r\n   206 match \\\\v .+[[:lower:]]\\n\\\\v \\d+ [[:upper:]]\r\n\r\n - Move Rev.12:17b into Rev.13.1 before the section title?\r\n   Ary nitsangana teo ambonin'ny fasiky ny ranomasina izy.\r\n   = And he stood upon the sand of the sea. \r\n   Insert \\nb for Rev.13 & also handle the mid-verse title.\r\n   \r\n - Italicise book abbreviations in footnote refs.   \r\n - Italicise further descriptive phrases in footnotes?\r\n\r\n - Make proper use of \\add ...\\add* for added words.\r\n   The PDF has some verse text in italics. e.g. \r\n   Ps.18.15 the phrase \"ny fahavaloko\" is in italics.\r\n   Use Markdown syntax to mark such _italics_ in XML source text?\r\n \r\n - Mark all poetry lines? Capitalise leading words?\r\n \r\n - Separate as a colophon the final verse of these 3 BOKY?\r\n   Ps.41.14 (currently v 13)\r\n     Isaorana anie Jehovah, Andriamanitry ny Isiraely, hatramin’ny taloha indrindra ka mandrakizay. Amena dia Amena.  \r\n   Ps.72.20  \r\n     Tapitra ny fivavak’i Davida, zanak’i Jese.\r\n   Ps.89.53 (currently v 52) \r\n     Isaorana mandrakizay anie Jehovah. Amena dia Amena.\r\n   NB. There may be some more colophons in other books.\r\n   \r\n - Overlay the paragraphing from HTM\/DOC or mimic the PDF.\r\n   There are some no-break chapters: (as in the English RV)\r\n - Insert \\nb for John 8 & Revelation 13\r\n   \r\n - Insert parallel passage references?\r\n   \r\n - Does any verse that starts with [[:lower:]] require editing?\r\n   Review punctuation at EOL of each preceding verse\r\n    \r\n - Capitalised names. e.g. for the 12 tribes in Deut.33\r\n "
+            },
+            "Comment": {
+              "value": "Research:\r\n\r\n - Research footnotes present in PDF but missing in XML.\r\n   Example: Foot of page 95 for Exodus 15...\r\n\r\n - Research: 128 footnotes in the PDF contain brackets. e.g.\r\n    Ps.58.2 Na: [Moa milaza ny maraina tokoa va ianareo, ry mahery?]\r\n   Are most of these new to the 1897 Revision?\r\n \r\n"
+            },
+            "Comment": {
+              "value": "Queries:\r\n\r\nFix uncapitalised proper names: e.g.\r\n   00045\tisiraely\r\n   02534\tIsiraely\r\n\r\nFix missing accents: e.g.\r\n   00013\tisan-tanàna\r\n   00001\tisan-tanana\r\n\r\nReview mixed case hyphenated words:\r\n  Match ignore case:\r\n  027\t041 \tan-Tanànan’i\r\n  002\t018 \tKiriata-Jearima\r\n"
+            },
+            "Comment": {
+              "value": "Orthography\r\n\r\nDid Malagasy orthography change between 1865 & 1897 ?\r\n\r\n - changed 'i to y (at the end of a word)\r\n - added h to words such as \"hianareo\" (at the start of a word)"
+            },
+            "Comment": {
+              "value": "Now fixed:\r\n\r\nThere were:\r\n - 150 matches to \"\\. [[:lower:]]\"\r\n   Fixes - chose one of: \r\n    * replace the period by a comma (common)\r\n    * replace the period by a semicolon (1)\r\n    * replace the period by an exclamation mark (1)\r\n    * remove the period (rare)\r\n    * capitalise the next word (rare)\r\n   Example: Ps.88.9 (currently v 8) \r\n   has \"Efa nataonao. fahavetavetana\" but the PDF has no period.\r\n\r\nThe XML file was edited to match the PDF file for these locations.\r\n\r\nHorizontal ellipsis:\r\n\r\n - PDF has ...... and .... in text or notes\r\n - XML has ...... and .... after manual edits\r\n\r\n"
+            },
+            "Comment": {
+              "value": "Do not change:\r\n\r\n - Don't mark the name of deity \\nd Jehovah\\nd* ! (7036)\r\n"
+            }
+          }
+        },
+        "Comment": {
+          "value": "Initial tidy up",
+          "SubFilters": {
+            "Columns": {
+              "filterType": 6,
+              "value": "1..7",
+              "moveTo": 1,
+              "processIndividually": false,
+              "excludeDelimiter": false,
+              "excludeQuotes": false,
+              "delimiter": 0,
+              "customDelimiter": ",",
+              "customQualifier": "\"",
+              "hasHeader": false
+            },
+            "Simple": {
+              "filterType": 12
+            },
+            "String": {
+              "expanded": true,
+              "value": "^<\/",
+              "matchCase": false,
+              "filterType": 15,
+              "SubFilters": {
+                "Simple": {
+                  "filterType": 48
+                }
+              }
+            }
+          }
+        },
+        "Comment": {
+          "value": "Notes to XML\r\n\r\nThe XML note element is just an interim feature.\r\n\r\nManual editing fixed a few notes!\r\n\r\nProtect: (temporarily)\r\n - Change brackets to braces for [Sela.], etc.\r\n\r\nNB. There are more footnotes in the 1887 Revision.",
+          "SubFilters": {
+            "Simple": {
+              "expanded": true,
+              "filterType": 49,
+              "SubFilters": {
+                "Grep": {
+                  "expanded": true,
+                  "filterType": 0,
+                  "value": "<\/verse>",
+                  "ignoreCase": false,
+                  "patternType": 0,
+                  "utf8support": true,
+                  "ignoreEmpty": false,
+                  "SubFilters": {
+                    "Comment": {
+                      "value": "Bracketed verse text:\r\n\r\n - Protect [Sela.] in Psalms & Habakkuk.\r\n\r\n - Some verses with a footnote also contain\r\n    some bracketed text that is not a footnote!\r\n\r\n   Example: 1 Peter 5:2\r\n   Andraso ny ondrin'Andriamanitra izay eo aminareo*, \r\n   mitandrina azy tsy an-tery, fa amin'ny sitrapo [araka an'Andriamanitra]; \r\n   tsy amin'ny fitiavana harena maloto, fa amin'ny zotom-panahy; \r\n   *[ Na: izay andraikitrareo]\r\n\r\nSolution: \r\n   - Change these brackets temporarily to {}\r\n",
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["\\s+(<\/verse>)", "$1"],
+                            ["\\[(Sela\\.)\\]", "{$1}"],
+                            ["\\[(araka an'Andriamanitra)\\]", "{$1}"]
+                          ]
+                        }
+                      }
+                    },
+                    "Comment": {
+                      "value": "Process bracketed notes\r\n\r\nMethod: (interim XML)\r\n - Replace each note tag by its matching <note>note-text<\/note>\r\n - Tags: ****,***,**,*,*\r\n - Temp: #,&,% iso ****,***,** (for unambiguous matching)\r\n - Text: [****.+],[***.+],[**.+],[*.+],[.+] but without []\r\n - Text: [.+] with no * must not begin with [#&%]\r\n",
+                      "SubFilters": {
+                        "Grep": {
+                          "expanded": true,
+                          "filterType": 0,
+                          "value": "]",
+                          "ignoreCase": false,
+                          "patternType": 0,
+                          "utf8support": true,
+                          "ignoreEmpty": false,
+                          "SubFilters": {
+                            "SearchList": {
+                              "useFile": false,
+                              "simultaneous": false,
+                              "ignoreCase": false,
+                              "patternType": 0,
+                              "greedy": false,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "items": [
+                                ["] [", "]["],
+                                ["****", "#"],
+                                ["***", "&"],
+                                ["**", "%"]
+                              ]
+                            },
+                            "SearchList": {
+                              "useFile": false,
+                              "simultaneous": false,
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "items": [
+                                ["\\Q#\\E(.*)\\Q[#\\E(.+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q&\\E(.*)\\Q[&\\E(.+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q%\\E(.*)\\Q[%\\E(.+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q*\\E(.*)\\Q[*\\E(.+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q*\\E(.*)\\Q[\\E([^#&%].+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q*\\E(.*)\\Q[\\E([^#&%].+)\\]", "<note>$2<\/note>$1"],
+                                ["\\Q*\\E(.*)\\Q[\\E([^#&%].+)\\]", "<note>$2<\/note>$1"]
+                              ]
+                            },
+                            "SearchList": {
+                              "useFile": false,
+                              "simultaneous": false,
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": true,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "items": [
+                                ["(<note>)\\s+", "$1"],
+                                ["\\s+(<\/note>)", "$1"],
+                                ["(\\w\\.)\\.+(<\/verse>)", "$1$$2"]
+                              ]
+                            },
+                            "SearchList": {
+                              "useFile": false,
+                              "simultaneous": false,
+                              "ignoreCase": false,
+                              "patternType": 0,
+                              "greedy": false,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "items": [
+                                ["*", "~"],
+                                ["%", "**"],
+                                ["&", "***"],
+                                ["#", "****"],
+                                ["~", "*"]
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Comment": {
+                      "value": "Adjustments\r\n - Added 2018-12-22\r\n - Move note element to after an apostrophe\r\n - Ensure such a note is always followed by a space\r\n - 152 replacements logged\r\n\r\nNote before apostrophe: (without this improvement)\r\n   152 match   \\f*' of which locations \r\n    78 match  '\\f*' at end of note text\r\n \r\nStatistics: (with final typography)\r\n   265 match \\x{2019}\\S",
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["(<note>.+<\/note>)'\\x20?", "'$1\\x20"]
+                          ]
+                        }
+                      }
+                    },
+                    "Comment": {
+                      "value": "Notes with brackets\r\n\r\n - Add missing right bracket to note text with left bracket\r\n - Currently, 9 notes have a left bracket\r\n",
+                      "SubFilters": {
+                        "Search": {
+                          "search": "<note>(.+)<\/note>",
+                          "replace": "",
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "replaceType": 4,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "SubFilters": {
+                            "Search": {
+                              "expanded": true,
+                              "search": "^.*(\\[.+)$",
+                              "replace": "",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "replaceType": 4,
+                              "greedy": true,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "SubFilters": {
+                                "String": {
+                                  "value": "].",
+                                  "matchCase": false,
+                                  "filterType": 3
+                                },
+                                "SearchList": {
+                                  "useFile": false,
+                                  "simultaneous": false,
+                                  "ignoreCase": false,
+                                  "patternType": 0,
+                                  "greedy": false,
+                                  "dotMatchesNewLines": true,
+                                  "utf8support": true,
+                                  "items": [
+                                    [".]", "]."],
+                                    ["]..", "]."]
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Comment": {
+                      "expanded": true,
+                      "value": "Restore protection",
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["\\s+(<\/verse>)", "$1"],
+                            ["\\{", "["],
+                            ["\\}", "]"]
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Comment": {
+          "value": "USFM\r\n\r\n - Subfilters convert content to USFM",
+          "SubFilters": {
+            "Comment": {
+              "value": "Book chapter verse tags\r\n\r\nVersification=German (but we should also evaluate French)\r\n\r\nWarnings: (osis2mod)\r\n Acts.19.41 appended\r\n 2Cor.13.14 appended\r\n\r\nIssues: (emptyvss)\r\n 58 Psalms have the last verse empty!\r\n  4 Psalms have the last 2 verses empty! Ps.51,52,54,60.\r\n 11 NT verses have the full verse text in a footnote\r\n\r\n Numbers 25:19\r\n Joshua 17:18\r\n II Kings 15:39\r\n I Chronicles 12:41, 27:34\r\n Deut.3.17 contains the text of vs 17-10 making the chapter shorter by 3 vss \r\n Rev.12.18 is empty because text is in 12:17 thus:\r\n  Ary nitsangana teo ambonin'ny fasiky ny ranomasina izy.    \r\n",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["<book number=\"(\\d+)\" title=\"(.+)\">", "\\\\id $1\\n\\\\mt $2"],
+                    ["<chapter number=\"(\\d+)\">", "\\\\c $1"],
+                    ["<verse number=\"(\\d+)\">", "\\\\v $1\\x20"],
+                    ["<\/verse>", ""],
+                    ["\\Q[] \\E", ""]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Identification\r\n\r\n - Replace book number by standard ID\r\n - Add description of work\r\n - Add encoding UTF-8\r\n - Add remark about conversion with datestamp\r\n ",
+              "SubFilters": {
+                "Grep": {
+                  "filterType": 0,
+                  "value": "\\\\id",
+                  "ignoreCase": false,
+                  "patternType": 0,
+                  "utf8support": true,
+                  "ignoreEmpty": false,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": true,
+                      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\N to ID.tab",
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true
+                    },
+                    "String": {
+                      "value": " Malagasy 1865 Bible translation by David Griffiths of the LMS.",
+                      "matchCase": false,
+                      "filterType": 3
+                    },
+                    "String": {
+                      "value": "\\x5Cide UTF-8\\n\\x5Crem Converted @_year@-@_month@-@_day@ by DFH\\n",
+                      "matchCase": false,
+                      "filterType": 2
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Chapter labels\r\n\r\n - Insert single \\cl marker before \\c 1\r\n \r\n - Post-processing of OSIS required to change (e.g.)\r\n     <milestone type=\"x-chapterLabel\" n=\"Toko 1\" \/>\r\n   to\r\n     <title type=\"x-chapterLabel\">Toko 1<\/title>\r\n   \r\n   Implemented in my TextPipe filter.\r\n\r\nAlternative: Edit u2o.py accordingly...",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": true,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["^(\\\\c 1)$", "\\\\cl Toko\\n$1"]
+                  ]
+                },
+                "Grep": {
+                  "expanded": true,
+                  "filterType": 0,
+                  "value": "\\\\id PSA",
+                  "ignoreCase": false,
+                  "contextAfter": 4,
+                  "patternType": 0,
+                  "utf8support": true,
+                  "ignoreEmpty": false,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": true,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(\\\\cl )Toko", "$1Salamo"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Running Header & Table of Contents\r\n\r\nCopy main title to \\h & each \\toc#\r\nReplace \\toc3 Bookname by \\toc3 Abbreviation\r\n\r\n2018-12-12 Reported strange software bug requiring \\\\toc22\r\n2018-12-26 Simon Carter needs test file and filter.\r\n\r\nTBD: Change running headers to uppercase?\r\n",
+              "SubFilters": {
+                "Search": {
+                  "search": "^(\\\\mt )(.+)$",
+                  "replace": "\\\\h $2\\n\\\\toc1 $2\\n\\\\toc22 $2\\n\\\\toc3 $2\\n$1$$2",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": true,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true
+                },
+                "Grep": {
+                  "filterType": 0,
+                  "value": "^\\\\toc3",
+                  "ignoreCase": false,
+                  "patternType": 0,
+                  "utf8support": true,
+                  "ignoreEmpty": false,
+                  "SubFilters": {
+                    "Search": {
+                      "expanded": true,
+                      "search": "^\\\\toc3 (.+)$",
+                      "replace": "",
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "replaceType": 4,
+                      "greedy": true,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": true,
+                          "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\Malagasy_booknames_abbreviations.tab",
+                          "simultaneous": false,
+                          "longestFirst": true,
+                          "ignoreCase": false,
+                          "patternType": 0,
+                          "greedy": false,
+                          "dotMatchesNewLines": true,
+                          "utf8support": true
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Section titles\r\n\r\n",
+              "SubFilters": {
+                "Comment": {
+                  "value": "Exceptions",
+                  "SubFilters": {
+                    "Grep": {
+                      "filterType": 0,
+                      "value": "\\\\v \\d+ .+?\\[.+?\\].+$",
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "utf8support": true,
+                      "ignoreEmpty": false,
+                      "SubFilters": {
+                        "Comment": {
+                          "value": "2 Samuel 19:9 section title is a midverse title\r\n\r\n\\v 9 Dia nivoaka ny mpanjaka ka nijanona teo am-bavahady; ary nolazaina tamin'ny vahoaka rehetra hoe: Indro, ny mpanjaka mijanona eo am-bavahady. Ary ny vahoaka rehetra dia nankeo anatrehan'ny mpanjaka.\r\n\\s Ny nodian'i Davida indray\r\n\\p Ary ny Isiraely dia samy efa lasa nandositra ho any amin'ny lainy avy.\n\r\n\\v 9 And the king arose, and sat in the gate. and it was told to all the people, saying, Behold, the king is sitting in the gate. And all the people came before the king.\r\n\\s David again restored\r\n\\p And Israel had fled every man to his tent.",
+                          "SubFilters": {
+                            "Search": {
+                              "search": " \\[(\\QNy nodian'i Davida indray\\E)\\]",
+                              "replace": "\\n\\\\s $1\\n\\\\p",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": true,
+                              "utf8support": true
+                            }
+                          }
+                        },
+                        "Comment": {
+                          "value": "2 Chronicles 22:9 section title is a midverse title\r\n\r\n\\v 9 Ary nitady an'i Ahazia koa izy; koa nisy nahita azy, raha mbola niery tany Samaria izy, dia nitondra azy ho any amin'i Jeho, ary namono azy ny olona ka nandevina azy; fa hoy ireo: Zanak'i Josafata, ilay nitady an'i Jehovah tamin'ny fony rehetra, ity.\r\n\\s Ny nanjakan'i Atalia, sy ny namonoana azy, ary ny nampanjakana an'i Joasy handimby azy\r\n\\p Ka dia tsy nahatana ny fanjakana ny terak'i Ahazia.\n\r\n\\v 9 And he sought Ahaziah; and they found him, as he was hiding in Samaria, and brought him to Jehu, and slew him, and buried him; for they said, He is the son of Jehoshaphat, who sought the Lord with all his heart.\r\n\\s And Athaliah reigned in his place, and slew Joash in his stead\r\n\\p So the house of Ahaziah had no power over the kingdom.",
+                          "SubFilters": {
+                            "Search": {
+                              "search": " \\[(\\QNy nanjakan'i Atalia, sy ny namonoana azy, ary ny nampanjakana an'i Joasy handimby azy\\E)\\]",
+                              "replace": "\\n\\\\s $1\\n\\\\p",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": true,
+                              "utf8support": true
+                            }
+                          }
+                        },
+                        "Comment": {
+                          "value": "Acts 8:1 section title is a midverse title\r\n\r\n\\v 1 Ary Saoly mba nankasitraka ny namonoana azy koa.\r\n\\s Ny nielezan'ny mpianatra noho ny fanenjehana, sy ny nitorian'ny Filipo tany Samaria sy tamin'ilay tandapa Etiopiana\r\n\\p Ary tamin'izany andro izany dia nisy fanenjehana mafy tamin'ny fiangonana tany Jerosalema; ka dia niely teny amin'ny tany Jodia sy Samaria izy rehetra, afa-tsy ny Apostoly ihany.\r\n\r\n\\v 1 And Saul was consenting unto his death.\r\n\\s The disciples spread because of persecution, and those who were speaking Philip in Samaria and the Ethiopian eunuch\r\n\\p And in those days there was a great persecution against the church which was at Jerusalem; and they were all scattered throughout the region of Judea and Samaria, except the apostles.",
+                          "SubFilters": {
+                            "Search": {
+                              "search": " \\[(\\QNy nielezan'ny mpianatra noho ny fanenjehana, sy ny nitorian'ny Filipo tany Samaria sy tamin'ilay tandapa Etiopiana\\E)\\]",
+                              "replace": "\\n\\\\s $1\\n\\\\p",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": true,
+                              "utf8support": true
+                            }
+                          }
+                        },
+                        "Comment": {
+                          "value": "Acts 9:19 section title is a mid-verse title!\r\n\r\nWe should have:\r\n\r\n\\v 19 ary nihinan-kanina izy ka dia natanjaka. \r\n\\s Ny nitorian'i Saoly tany Damaskosy sy Jerosalema\r\n\\p Ary Saoly nitoetra andro vitsivitsy teo amin'ny mpianatra tany Damaskosy.\n\r\n\r\n",
+                          "SubFilters": {
+                            "Search": {
+                              "search": " \\[(\\QNy nitorian'i Saoly tany Damaskosy sy Jerosalema\\E)\\]",
+                              "replace": "\\n\\\\s $1\\n\\\\p",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": true,
+                              "utf8support": true
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "Comment": {
+                      "value": "Acts 21:1 section title:\r\n\r\nActs 20:38 contained almost identical bracketed text\r\n\r\n\\v 38 sady nalahelo loatra noho ny nilazany fa tsy hahita ny tavany intsony izy. Dia nanatitra azy teny an-tsambo izy. \r\n[Ny nahatongavan'i Paoly tany Jerosalema, sy ny nataony hampihena ny tsi-fitiavan'ny Kristiana tany Palestina azy]\n\\c 21\n\\s Ary nahatongavan'i Paoly tany Jerosalema, sy ny nataony ny tsi-fitiavan'ny Kristiana tany Palestina azy\n\r\nAfter looking at Google Translate, I decided the one in 20:38 was preferred.\r\n\r\nPaul came to Jerusalem, and what he did to mitigate the dislike of the Christians in Palestine\r\n\\ c 21\r\nAnd Paul came to Jerusalem and did the unbelief of the Christian in Palestine\r\n\r\nXML file manually edited.\r\n"
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Move leading bracketed text to become a section title\r\n\r\nNB. Do not move the bracketed text if it's the whole verse!\r\n\r\nOf the 27 such verses:\r\n        1 in Mark 7:16\r\n       12 in Mark 16:9-20\r\n        1 in John 5:4\r\n        1 in John 7:53\r\n       11 in John 8:1-11\r\n        1 in Acts 24:7",
+                  "SubFilters": {
+                    "Grep": {
+                      "expanded": true,
+                      "filterType": 1,
+                      "value": "^\\\\v \\d+ \\[[^\\[]+\\]\\s*$",
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "utf8support": true,
+                      "ignoreEmpty": false,
+                      "SubFilters": {
+                        "Number": {
+                          "expanded": true,
+                          "value": 2,
+                          "filterType": 18,
+                          "SubFilters": {
+                            "SearchList": {
+                              "useFile": false,
+                              "simultaneous": false,
+                              "onlyLogOnReplace": true,
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "greedy": false,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "items": [
+                                ["^(\\\\v \\d+ )\\[(.+)\\]\\s*", "\\\\s $2\\n\\\\p\\n$1"]
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Major section titles in Psalms \r\n\r\n \\s => \\ms\r\n\r\nShould \\ms be moved to before \\c ?",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["^\\\\s (BOKY .+)\\n\\\\p", "\\\\ms $1"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Acrostic titles\r\n\r\nNB. Edited original XML file to restore [TAO] in Ps 119:169",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true,
+                  "items": [
+                    ["^\\\\s ([A-Z]+)$", "\\\\qa $1"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Chapter paragraphs\r\n\r\nAre there any that require \\nb ?",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true,
+                  "items": [
+                    ["^(\\\\c \\d+\\n)(\\\\v )", "$1\\\\p\\n$2"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Footnotes\r\n\r\nAlso removes spurious [ in some note text\r\nAlso fix right ] in one note\r\nAlso fixes a few punctuation errors\r\n\r\nReconsider: Footnotes with text that contains brackets.\r\n Search PDF for \"Na: [\"\r\n\r\nReview:\r\n Notes containing an origin reference (some now removed)\r\n 40 notes containing \\+it Ampio hoe:\\+it* = Additionally:\r\n\r\n Note text that ends with an apostrophe\r\n     3 match ')\\f*  at end of note text\r\n   107 match  '\\f*  at end of note text\r\n\r\n Note with two tags: \r\n  1 Cor 10:16 required editing!\r\n  Both \"amin*'ny\" & \"amin**'ny\" were tagged\r\n  Solution: Repeat the note (removed \"sy \")\r\n\r\nNB. Footnotes in PDF all end with a period.\r\n    Footnotes in XML were generally without.\r\n    Added systematically in USFM output.",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["<note>", "\\\\f + \\\\ft\\x20"],
+                    ["<\/note>", "\\\\f\\x2A"],
+                    ["(\\\\ft ):", "$1"],
+                    ["(etc)(\\\\)", "$1.$2"],
+                    ["(etc\\.)\\.", "$1"],
+                    ["(\\\\ft Na)\\x20", "$1"],
+                    ["(\\\\ft )\\x2A", "$1"],
+                    ["(Gr)(\\x20)", "$1.$2"]
+                  ]
+                },
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["(\\\\v \\d+ )(\\\\f )", "$1\\xE2\\x80\\x8B$2"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Cross-references\r\n\r\nProtect parenthesised text without numerics:\r\nTemporarily change the parentheses to braces (451 instances)\r\n\r\nCorrectly processes Hebrews 10:38 that had \r\n \"(Hab. 2.3, 4). [* (ny marina)]\" \r\n\r\nParenthesised items that contain numerics - with 2 exceptions\r\n - Removes the parentheses from \\xt (reference text)\\x*\r\n - Removes the trailing period from 8 references.\r\n - Changes: \\x + \\xt Oha. 22. 8, LXX.\\x*\r\n        to: \\x + \\xt Oha. 22. 8\\xt*, LXX.\\x*\r\n\r\nUse nested tag syntax \\+xt ...\\+xt* for xref within footnote\r\n\r\n Mark 15:28 footnote contains an xref note:\r\n  *[*Ampio hoe: 28 Dia tanteraka ny Soratra Masina izay manao hoe: \r\n  Ary natao ho isan'ny mpanota Izy (Isa. 53. 12)]\r\n Not really clear why this whole verse is a footnote!\r\n\r\nTBD: \\f + \\ft Izahao and. 14.\\f* requires \\+xt 14\\+xt* (in 2 Sam.2.27)\r\n     \\f + \\ft Izahao and. 6.\\f* requires \\+xt 6\\+xt* (in Prov.10.11)\r\n              but what are the target references? \r\n     NB. \"and.\" is abbreviation for \"andininy\" = \"verse\"",
+              "SubFilters": {
+                "Comment": {
+                  "value": "Protect other parentheses",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["\\((\\D+)\\)", "{$1}"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Process reference parentheses",
+                  "SubFilters": {
+                    "Grep": {
+                      "expanded": true,
+                      "filterType": 0,
+                      "value": "\\(.*\\d+.*\\)",
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "utf8support": true,
+                      "ignoreEmpty": false,
+                      "SubFilters": {
+                        "Grep": {
+                          "expanded": true,
+                          "filterType": 1,
+                          "value": "(Kanefa iny karazana|nitondra azy tahaka)",
+                          "ignoreCase": false,
+                          "patternType": 0,
+                          "utf8support": true,
+                          "ignoreEmpty": false,
+                          "SubFilters": {
+                            "Search": {
+                              "expanded": true,
+                              "search": "\\(.*\\d+.*\\)",
+                              "replace": "",
+                              "ignoreCase": false,
+                              "patternType": 1,
+                              "replaceType": 2,
+                              "greedy": false,
+                              "dotMatchesNewLines": false,
+                              "utf8support": true,
+                              "SubFilters": {
+                                "SearchList": {
+                                  "useFile": false,
+                                  "simultaneous": false,
+                                  "ignoreCase": false,
+                                  "patternType": 1,
+                                  "greedy": false,
+                                  "dotMatchesNewLines": true,
+                                  "utf8support": true,
+                                  "items": [
+                                    ["\\(", ""],
+                                    ["\\)", ""],
+                                    ["(\\d+)\\.$", "$1"],
+                                    ["^(.+)$", "\\\\x + \\\\xt $1\\\\x\\x2A"],
+                                    ["(, LXX)", "\\\\xt\\x2A$1"]
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Restore other parentheses",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        ["{", "("],
+                        ["}", ")"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Canonical Psalm titles\r\n\r\n - Converts all the Psalm titles (using \\d )\r\n   These are either:\r\n   - Part of verse 1\r\n   - All of verse 1\r\n   - Verse 1 & part of verse 2 (Psalm 118)\r\n   - All of verses 1 & 2 (Psalms 51,52,54,60)\r\n\r\n - Psalm title input markup:\r\n   116 ¬ marked the end of a canonical title, of which\r\n    54 ¬ were preceded by a space\r\n    62 ¬ were at EOL\r\n\r\n - Removes preceding \\p and adds succeeding \\p\r\n + Change to \\q when poetry is implemented.\r\n \r\nNB: osis2mod gave 58 nesting warnings where\r\n    a title element contains a verse sID but not its eID,\r\n    i.e. where only part of the verse is within the title!\r\n    Such nesting causes data loss during module build.\r\n    Using a div element instead would solve this problem.",
+              "SubFilters": {
+                "Search": {
+                  "search": "^\\\\p\\n(\\\\v 1 .+(\\n.+)?)\\xAC",
+                  "replace": "\\\\d $1\\n\\\\p\\x20",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true
+                }
+              }
+            }
+          }
+        },
+        "Comment": {
+          "value": "Poetry\r\n\r\nTBD: Require full PDF to obtain poetry layout.\r\n\r\nNB. Marking Selah in OSIS requires poetry line groups.\r\n\r\n",
+          "enabled": false,
+          "SubFilters": {
+            "Comment": {
+              "value": "Selah\r\n\r\n - Coded as [Sela.] in Psalms & Habbakuk\r\n - Mark \\qs (Sela.)\\qs* (disabled for now)\r\n\r\n",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["(\\Q(Sela.)\\E)", "\\\\qs $1\\\\qs\\x2A"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Refrains\r\n\r\n - Mark all the refrains in Psalm 136 ?\r\n   \\qr (Fa mandrakizay ny famindram-pony)\r\n"
+            }
+          }
+        },
+        "Comment": {
+          "value": "Miscellaneous",
+          "SubFilters": {
+            "Comment": {
+              "value": "Fix punctuation marks, etc.\r\n\r\n\r\n",
+              "SubFilters": {
+                "Comment": {
+                  "value": "Whitespace",
+                  "SubFilters": {
+                    "Simple": {
+                      "filterType": 19
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Soft hyphens",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": true,
+                      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\malgache_softhyphens.tab",
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Remove spurious digit in Psalm 72:3-7",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["([a-z]+)2", "$1"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Insert space after comma, semicolon, colon, period, exclamation\r\n\r\nWould not catch any words that start with an accented letter",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(,)([A-Za-z])", "$1 $2"],
+                        ["(;)([A-Za-z])", "$1 $2"],
+                        ["(:)([A-Za-z])", "$1 $2"],
+                        ["(\\.)([A-Za-z])", "$1 $2"],
+                        ["(\\!)([A-Za-z])", "$1 $2"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Double & triple period",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["([a-z]\\.)\\.$", "$1"]
+                      ]
+                    },
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        [". . .", "..."],
+                        [". .", "."]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Double comma & comma period, etc.",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        [",,", ","],
+                        [",.", "."],
+                        [", .", "."],
+                        ["; .", "."],
+                        ["* .", "*."],
+                        [": .", "."]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Remove space before period",
+                  "SubFilters": {
+                    "Grep": {
+                      "filterType": 1,
+                      "value": "\\Q...\\E",
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "utf8support": true,
+                      "ignoreEmpty": false,
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "onlyLogOnReplace": true,
+                          "ignoreCase": false,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["([a-z]) (\\.)", "$1$$2"]
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Remove space before other punctuation mark",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        [" :", ":"],
+                        [" ;", ";"],
+                        [" ,", ","],
+                        [" !", "!"],
+                        [" ?", "?"],
+                        [".?", ". ?"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Remove space before or after apostrophe",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        ["\\x20'", "'"],
+                        ["'\\x20", "'"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Fix typos (spurious digits after an apostrophe)",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        ["(an')1", "$1i"],
+                        ["(mpanjakan')1", "$1i"],
+                        ["(imason')1", "$1i"],
+                        ["(nirahin')1", "$1i"],
+                        ["(nanokan)(an')1", "$1a $2i"],
+                        ["(tranon')1", "$1i"],
+                        ["(zanak')1", "$1i"],
+                        ["(tsindranolahin')1", "$1i"],
+                        ["(nofin')3", "$1i"],
+                        ["(mbamin')2", "$1i"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Fix typos in book abbreviations\r\n Deo].\r\n Iza.\r\n Jery.",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(Deo)\\]", "$1"],
+                        ["Iza\\.", "Isa."],
+                        ["(Jer)y", "$1"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Fix typos in footnote abbreviations",
+                  "SubFilters": {
+                    "Search": {
+                      "expanded": true,
+                      "search": "\\\\ft (\\S+) ",
+                      "replace": "",
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "replaceType": 4,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "SubFilters": {
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "wholeWord": true,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["^(Heb)$", "Heb."]
+                          ]
+                        },
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "patternType": 0,
+                          "greedy": false,
+                          "dotMatchesNewLines": true,
+                          "utf8support": true,
+                          "items": [
+                            ["Gr:", "Gr."],
+                            ["Heb,", "Heb."],
+                            ["Heb:", "Heb."],
+                            ["Heb;", "Heb."],
+                            ["heb.", "Heb."],
+                            ["He.", "Heb."],
+                            ["Na.", "Na:"],
+                            ["Na;", "Na:"]
+                          ]
+                        },
+                        "SearchList": {
+                          "useFile": false,
+                          "simultaneous": false,
+                          "ignoreCase": false,
+                          "wholeWord": true,
+                          "patternType": 1,
+                          "greedy": false,
+                          "dotMatchesNewLines": false,
+                          "utf8support": true,
+                          "items": [
+                            ["^na", "Na"]
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Fix typos (spurious numbers after a punctuation mark)",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(Ony,)1", "$1"],
+                        ["(haringana,)1", "$1"],
+                        ["(tsihy\\.)40", "$1"],
+                        ["(mpihatsaravelatsihy,)44", "$1"],
+                        ["(fahagola,)2", "$1"],
+                        ["(fiainan-tsi-hita,)3", "$1"],
+                        ["(fatana,)4", "$1"],
+                        ["(tempoly;)152", "$1"],
+                        ["(aho\\.)1", "$1"],
+                        ["(famarana\\.)7", "$1"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Blanks",
+                  "SubFilters": {
+                    "Simple": {
+                      "filterType": 11
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Roman numerals\r\n\r\n 61 replacements made (tested by adding left margin ~ )",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "[^'\\\\\\w]([lxvi]+)[\\.:,]",
+                  "replace": "",
+                  "ignoreCase": true,
+                  "patternType": 1,
+                  "replaceType": 4,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": true,
+                      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\malgache_Roman_numerals.tab",
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Separators within references\r\n\r\nStandardize reference format to \r\n  Name ch. vs\r\n  Name ch. vs, vs\r\n  Name ch. vs-vs\r\n Abbr. ch. vs\r\n Abbr. ch. vs, vs\r\n Abbr. ch. vs-vs\r\n \r\n",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "onlyLogOnReplace": true,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": true,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["(Mat|Sal|Lio|Jao)(\\.)(\\d+)", "$1$$2 $3"],
+                    ["(Lev|Mal|Isa|Oha|Sal) (\\d+)", "$1. $2"],
+                    ["([A-Z][a-z]+\\. \\d+),", "$1."],
+                    ["([A-Z][a-z]+\\. \\d+\\.)(\\d+)", "$1 $2"],
+                    ["(\\d+) - (\\d+)", "$1-$2"],
+                    ["(\\d+\\.)(\\d+)", "$1 $2"],
+                    ["(\\d+):(\\d+)", "$1. $2"],
+                    ["(\\d+,)(\\d+)", "$1 $2"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "References within footnote text\r\n\r\n Tag using \\+xt ...\\+xt*\r\n\r\nNow includes references with verse numbers only.\r\n\r\nFootnote text containing abbreviation \"and.\" for \"andininy\" = verse\r\n    Izahao 1. and. 19.\r\n    izahao and. 1.\r\n    izahao and. 3.\r\n    Izahao and. 6.\r\n    izahao and. 8.\r\n    Izahao and. 14.\r\n    sahala amin’ ny teny ao amin’ ny and. 14.\r\n    = like the words in vs. 14.\r\n\r\nNB: [Izahao i. and. 19] in 2 Sam 2:18 actually means\r\n    [See (ch.) 1 vs. 19] = [See 2Sam. 1. 19]\r\n\r\n",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "\\\\ft (.+)\\\\f\\x2A",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 4,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": true,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(and\\. \\d+)", "\\\\+xt $1\\\\+xt\\x2A"],
+                        ["(\\d+\\. )(\\\\\\x2Bxt )", "$2$$1"]
+                      ]
+                    },
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": true,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["\\Q\\x + \\xt \\E", ""],
+                        ["\\Q\\x*\\E", ""],
+                        ["([Ii]zahao )(\\d+\\. \\d+)", "$1\\\\+xt $2\\\\+xt\\x2A"],
+                        ["((\\d )?[A-Z][a-z]+\\.? \\d+\\. \\d+(, \\d+)?|\\d+\\. \\d+-\\d+)", "\\\\+xt $1\\\\+xt\\x2A"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Periods in footnotes\r\n\r\nExcludes those ending with a punctuation mark but \r\nincludes those ending with *\r\nAssumes that notes containing brackets already end with ].\r\n\r\n",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": true,
+                  "utf8support": true,
+                  "items": [
+                    ["([^[:punct:]])(\\Q\\f*\\E)", "$1.$2"],
+                    ["(\\x2A)(\\Q\\f*\\E)", "$1.$2"]
+                  ]
+                }
+              }
+            },
+            "Comment": {
+              "value": "Italics in footnotes\r\n\r\nTBD: Any other extra words ?\r\n\r\nTBD: Also italicise within references:\r\n - book abbreviations\r\n - other abbreviations (and.)\r\n - further directive phrases\r\n\r\nNB: Anaram-biby haingan-tongotra. (7 matches, but only 1 originally)\r\n =  a swift animal name (gazela, diera, dieravavy)\r\n",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "\\\\ft (.+)\\\\f\\x2A",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 4,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["(Ar|Gr|Heb)(\\.)", "\\\\\\x2Bit $1$$2\\\\\\x2Bit\\x2A"],
+                        ["(Na|na)(:)", "\\\\\\x2Bit $1$$2\\\\\\x2Bit\\x2A"],
+                        ["(Ampio hoe:)", "\\\\\\x2Bit $1\\\\\\x2Bit\\x2A"],
+                        ["(Izahao|izahao)( \\\\\\x2Bxt)", "\\\\\\x2Bit $1\\\\\\x2Bit\\x2A$2"],
+                        ["(sahala amin'ny teny ao amin'ny)", "\\\\\\x2Bit $1\\\\\\x2Bit\\x2A"],
+                        ["(Anaram-biby haingan-tongotra\\.)", "\\\\\\x2Bit $1\\\\\\x2Bit\\x2A"],
+                        ["(Aramiana\\.)", "\\\\\\x2Bit $1\\\\\\x2Bit\\x2A"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Diacritics\r\n\r\n - These fixes are to be checked in the PDF.\r\n\r\n",
+              "SubFilters": {
+                "Comment": {
+                  "value": "Latin letter ì with grave accent",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["manamasina", "manamas\\xC3\\xACna"],
+                        ["Manamasina", "Manamas\\xC3\\xACna"],
+                        ["mangina", "mang\\xC3\\xACna"],
+                        ["Mangina", "Mang\\xC3\\xACna"],
+                        ["masina", "mas\\xC3\\xACna"],
+                        ["Masina", "Mas\\xC3\\xACna"],
+                        ["midina", "mid\\xC3\\xACna"],
+                        ["Midina", "Mid\\xC3\\xACna"],
+                        ["midira", "mid\\xC3\\xACra"],
+                        ["Midira", "Mid\\xC3\\xACra"],
+                        ["mihodina", "mihod\\xC3\\xACna"],
+                        ["Mihodina", "Mihod\\xC3\\xACna"],
+                        ["misikina", "misik\\xC3\\xACna"],
+                        ["Misikina", "Misik\\xC3\\xACna"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Latin letter ï with diaeresis\r\n\r\n - Letter ï words: (original XML)\r\n    Seïra Seïrima Jaïra Havota-jaïra \r\n\r\n - Fix spellings with diaeresis: [aeo]i => [aeo]ï \r\n - Proper names:\r\n    Afarsaita Baita Dinaita Goima Havota-jaira Jaira\r\n    Koraita Mezobaita Misraita Nikolaita Paloita\r\n    Refaita Seira Seirata Tekoita Zaira Zeboima Zoraita",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 0,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["Afarsaita", "Afarsaïta"],
+                        ["Baita", "Baïta"],
+                        ["Dinaita", "Dinaïta"],
+                        ["Goima", "Goïma"],
+                        ["Havota-jaira", "Havota-jaïra"],
+                        ["Jaira", "Jaïra"],
+                        ["Koraita", "Koraïta"],
+                        ["Mezobaita", "Mezobaïta"],
+                        ["Misraita", "Misraïta"],
+                        ["Nikolaita", "Nikolaïta"],
+                        ["Paloita", "Paloïta"],
+                        ["Refaita", "Refaïta"],
+                        ["Seira", "Seïra"],
+                        ["Seirata", "Seïrata"],
+                        ["Tekoita", "Tekoïta"],
+                        ["Zaira", "Zaïra"],
+                        ["Zeboima", "Zeboïma"],
+                        ["Zoraita", "Zoraïta"]
+                      ]
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Latin letter y with grave\r\n\r\nNB. There were 9 instances of \"tery\" in BibleMalagasyDoc-Bible.vss.txt\r\n    Should these really be replaced?\r\n\r\n    Diacritics in deixis are not mandatory in Malagasy.\r\n    https:\/\/en.wikipedia.org\/wiki\/Malagasy_language#Diacritics",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["aty", "at\\xE1\\xBB\\xB3"],
+                        ["Aty", "At\\xE1\\xBB\\xB3"],
+                        ["ery", "er\\xE1\\xBB\\xB3"],
+                        ["Ery", "Er\\xE1\\xBB\\xB3"],
+                        ["ety", "et\\xE1\\xBB\\xB3"],
+                        ["Ety", "Et\\xE1\\xBB\\xB3"],
+                        ["hankary", "hankar\\xE1\\xBB\\xB3"],
+                        ["hankaty", "hankat\\xE1\\xBB\\xB3"],
+                        ["Hankaty", "Hankat\\xE1\\xBB\\xB3"],
+                        ["hankery", "hanker\\xE1\\xBB\\xB3"],
+                        ["hankety", "hanket\\xE1\\xBB\\xB3"],
+                        ["taty", "tat\\xE1\\xBB\\xB3"],
+                        ["tery", "ter\\xE1\\xBB\\xB3"],
+                        ["tety", "tet\\xE1\\xBB\\xB3"]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "Comment": {
+          "value": "Typography\r\n\r\n - Improve upon the original digitisation by using\r\n - Unicode characters that more closely match the PDF",
+          "SubFilters": {
+            "Comment": {
+              "value": "Hyphens (WIP)\r\n\r\nTBD: Review all word-wrap hyphens in PDF.\r\n - Restore hyphens mistakenly removed for word-wrap\r\n - Remove hyphens mistakenly retained for word-wrap\r\n\r\nResearch: \r\n - Missing hyphens. e.g. Obededoma   => Obed-edoma\r\n - Spurious hyphen. e.g. hazan-drano => hazandrano",
+              "SubFilters": {
+                "Comment": {
+                  "value": "Add hyphen",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": true,
+                      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\add_hyphen.tab",
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true
+                    }
+                  }
+                },
+                "Comment": {
+                  "value": "Remove hyphen",
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": true,
+                      "filename": "D:\\Download\\Java\\GoBibleCreator\\Download Other\\Madabibliq.org\\XML\\Analysis\\remove_hyphen.tab",
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "wholeWord": true,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Horizontal bars\r\n\r\nOutput USFM now contains:\r\n   105 horizontal bars\r\n\r\n - Replace hyphen in \\W-\\W by horizontal bar? (105 places)\r\n   The pattern inludes hyphen at EOL.\r\n   4 instances are at start of verse text.\r\n\r\n   PDF from archive.org confirms this (e.g. Ps.55.13)\r\n   NB. There are many more not present in the XML.\r\n\r\n - Should some spaces be removed?\r\n\r\nHyphen statistics: (needs checking)\r\n     7 comma space hyphen (4 at EOL)\r\n    31 comma hyphen (11 at EOL)\r\n    55 space hyphen space\r\n    14 space hyphen EOL\r\n     4 SOV hyphen space\r\n\r\n  \r\n",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "\\W-\\W",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 2,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "onlyLogOnReplace": true,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["-", "\\xE2\\x80\\x95"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Double quotation marks\r\n\r\n - Replace paired double qms by left & right single\/double qms\r\n   Example: Psalm 2:3,6,7-9 uses double qms \r\n   Example: Psalm 10:4 has ‘tsy misy Andriamanitra’\r\n      NB. The XML here had \"Tsy ...\".\r\n\r\nNB. 1 unpaired \" is now fixed in 1 Peter 4:18\r\n\r\nReplacements done in two stages:\r\n - 84 pairs are within a single line\r\n - 12 pairs are within 6 consecutive lines\r\n",
+              "SubFilters": {
+                "Search": {
+                  "expanded": true,
+                  "search": "^(.+\\n){1,6}",
+                  "replace": "",
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "replaceType": 2,
+                  "greedy": true,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "SubFilters": {
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": false,
+                      "utf8support": true,
+                      "items": [
+                        ["\"(.+)\"", "\\xE2\\x80\\x9C$1\\xE2\\x80\\x9D"]
+                      ]
+                    },
+                    "SearchList": {
+                      "useFile": false,
+                      "simultaneous": false,
+                      "ignoreCase": false,
+                      "patternType": 1,
+                      "greedy": false,
+                      "dotMatchesNewLines": true,
+                      "utf8support": true,
+                      "items": [
+                        ["\"(.+)\"", "\\xE2\\x80\\x9C$1\\xE2\\x80\\x9D"]
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "Comment": {
+              "value": "Typographical apostrophes\r\n\r\n - Replace all \\x27 by U+2019 (\\xE2\\x80\\x99) & space (only before \\w)\r\n - Should we use a [half-width] [no-break] space?\r\n - Generate counted word list with\/without apostrophes?\r\n \r\nKeep this as the last subfilter, so it can be disabled for testing.",
+              "SubFilters": {
+                "SearchList": {
+                  "useFile": false,
+                  "simultaneous": false,
+                  "ignoreCase": false,
+                  "patternType": 1,
+                  "greedy": false,
+                  "dotMatchesNewLines": false,
+                  "utf8support": true,
+                  "items": [
+                    ["\\x27(\\w)", "\\xE2\\x80\\x99\\x20$1"],
+                    ["\\x27(\\W)", "\\xE2\\x80\\x99$1"]
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "Output": {
+      "retainDateTime": false,
+      "outputToFile": 1,
+      "changeExtension": true,
+      "newExtension": ".usfm",
+      "changeBaseDir": false,
+      "newBaseDir": "C:\\",
+      "singleFilename": "%USERPROFILE%\\mergefilename.txt",
+      "append": false,
+      "onlyOutputChangedFiles": 1,
+      "openOutputOnCompletion": true,
+      "ignoreStartFolder": false,
+      "isPrimary": true
+    }
+  }
+}

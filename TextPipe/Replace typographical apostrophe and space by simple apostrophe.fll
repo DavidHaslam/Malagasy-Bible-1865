@@ -1,0 +1,60 @@
+﻿{
+  "formatName": "TextPipe_FLL",
+  "formatVersion": "1.0",
+  "trialInput": "You can type sample text in \r\nthe Trial Run Input Area to\r\ntest if your filter is working \r\nproperly. Click the [Trial Run]\r\nbutton below to start the test.\r\n\r\nYou can also perform Partial Trial \r\nRuns by right-clicking on filters\r\nin the Filter list.\r\n\r\nTo clear this text, just right \r\nclick it and select 'Clear Entire \r\nField' from the menu. Most \r\nof TextPipe's fields have \r\nsimilar helpful menus.\r\n",
+  "Logging": {
+    "expanded": true,
+    "enabled": true,
+    "filename": ".\\textpipe.log",
+    "append": false,
+    "threshold": 500,
+    "commentFilters": true
+  },
+  "Files": [
+    {
+      "filename": "S:\\Export\\Mg1865x\\Mg1865x.diatheke.txt",
+      "subfolder": "None",
+      "action": "Include"
+    }
+  ],
+  "Filters": {
+    "Input": {
+      "binaryFiles": 0,
+      "inputFromFiles": 1,
+      "insideCompressed": false
+    },
+    "Comment": {
+      "expanded": true,
+      "value": "Replace typographical apostrophe and space by simple apostrophe",
+      "SubFilters": {
+        "SearchList": {
+          "useFile": false,
+          "simultaneous": false,
+          "onlyLogOnReplace": true,
+          "ignoreCase": false,
+          "patternType": 1,
+          "greedy": false,
+          "dotMatchesNewLines": false,
+          "utf8support": true,
+          "items": [
+            ["\\x{2019}\\x20", "\\x27"]
+          ]
+        }
+      }
+    },
+    "Output": {
+      "retainDateTime": false,
+      "outputToFile": 1,
+      "changeExtension": true,
+      "newExtension": "'.txt",
+      "changeBaseDir": false,
+      "newBaseDir": "C:\\",
+      "singleFilename": "%USERPROFILE%\\mergefilename.txt",
+      "append": false,
+      "onlyOutputChangedFiles": 1,
+      "openOutputOnCompletion": true,
+      "ignoreStartFolder": false,
+      "isPrimary": true
+    }
+  }
+}

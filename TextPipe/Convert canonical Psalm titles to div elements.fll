@@ -1,0 +1,118 @@
+﻿{
+  "formatName": "TextPipe_FLL",
+  "formatVersion": "1.0",
+  "trialInput": "You can type sample text in \r\nthe Trial Run Input Area to\r\ntest if your filter is working \r\nproperly. Click the [Trial Run]\r\nbutton below to start the test.\r\n\r\nYou can also perform Partial Trial \r\nRuns by right-clicking on filters\r\nin the Filter list.\r\n\r\nTo clear this text, just right \r\nclick it and select 'Clear Entire \r\nField' from the menu. Most \r\nof TextPipe's fields have \r\nsimilar helpful menus.\r\n",
+  "Logging": {
+    "expanded": true,
+    "enabled": true,
+    "filename": ".\\textpipe.log",
+    "append": false,
+    "threshold": 500,
+    "commentFilters": true
+  },
+  "Files": [
+    {
+      "filename": "S:\\Import\\bible.mg1865.osis",
+      "subfolder": "None",
+      "action": "Include"
+    }
+  ],
+  "Filters": {
+    "Input": {
+      "binaryFiles": 0,
+      "inputFromFiles": 1,
+      "insideCompressed": false
+    },
+    "Comment": {
+      "value": "Revision history:\r\n\r\n2018-12-27 Last working update to this filter\r\n2021-01-21 Resaved the filter in human readable JSON format\r\n           Added this comment filter as a record only\r\n\r\nNotes:\r\n1. This filter is for postprocessing the OSIS file\r\n2. The output filename is the same as the input filename\r\n\r\n"
+    },
+    "Comment": {
+      "value": "Convert canonical Psalm titles to div elements\r\n\r\nRequired to avoid NESTING warnings with osis2mod\r\nand the associated loss of verse text data \r\nwhen a Psalm title occupies only part of a verse.",
+      "SubFilters": {
+        "Search": {
+          "expanded": true,
+          "search": "<!-- d -->(.+\\n){1,5}",
+          "replace": "",
+          "ignoreCase": false,
+          "patternType": 1,
+          "replaceType": 2,
+          "greedy": true,
+          "dotMatchesNewLines": false,
+          "utf8support": true,
+          "SubFilters": {
+            "SearchList": {
+              "useFile": false,
+              "simultaneous": false,
+              "ignoreCase": false,
+              "patternType": 1,
+              "greedy": false,
+              "dotMatchesNewLines": true,
+              "utf8support": true,
+              "items": [
+                ["<title type=\"psalm\"( canonical=\"true\">.+)<\/title>", "<div type=\"x-psalm-title\"$1<\/div>"],
+                ["(<\/div>)(\\n<verse eID=\"\\S+\" \/>)", "$2$$1"]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Comment": {
+      "value": "Convert chapter label milestones to titles\r\n\r\n - Post-processing of OSIS required to change (e.g.)\r\n     <milestone type=\"x-chapterLabel\" n=\"Toko 1\" \/>\r\n   to\r\n     <title type=\"x-chapterLabel\">Toko 1<\/title>\r\n   \r\n   or edit u2o.py accordingly?",
+      "SubFilters": {
+        "Grep": {
+          "expanded": true,
+          "filterType": 0,
+          "value": "<!-- cl -->",
+          "ignoreCase": false,
+          "patternType": 0,
+          "utf8support": true,
+          "ignoreEmpty": false,
+          "SubFilters": {
+            "SearchList": {
+              "useFile": false,
+              "simultaneous": false,
+              "onlyLogOnReplace": true,
+              "ignoreCase": false,
+              "patternType": 1,
+              "greedy": true,
+              "dotMatchesNewLines": false,
+              "utf8support": true,
+              "items": [
+                ["<milestone (type=\"x-chapterLabel\") n=\"(.+)\" \/>", "<title $1>$2<\/title>"]
+              ]
+            }
+          }
+        }
+      }
+    },
+    "Comment": {
+      "value": "Move the chapter label titles into each major section of Psalms",
+      "SubFilters": {
+        "Search": {
+          "search": "(<!-- cl --><title type=\"x-chapterLabel\">.+<\/title>\\n)((<\/div>\\n)*<div type=\"majorSection\">\\n<title>.+<\/title>\\n)",
+          "replace": "$2$$1",
+          "ignoreCase": false,
+          "patternType": 1,
+          "greedy": false,
+          "dotMatchesNewLines": false,
+          "utf8support": true
+        }
+      }
+    },
+    "Output": {
+      "retainDateTime": false,
+      "outputToFile": 1,
+      "changeExtension": false,
+      "newExtension": ".test@inputExtension",
+      "changeBaseDir": false,
+      "newBaseDir": "C:\\",
+      "singleFilename": "%USERPROFILE%\\mergefilename.txt",
+      "append": false,
+      "onlyOutputChangedFiles": 1,
+      "openOutputOnCompletion": true,
+      "ignoreStartFolder": false,
+      "isPrimary": true
+    }
+  }
+}
