@@ -12,7 +12,7 @@ The source text used as the starting point for this project was obtained on 2018
 
 *The original URL is now occupied by a domain squatter, so the above link is to an archived copy on the **Wayback Machine**.*
 
-One of the downloads on the **Concordance** page is particularly useful by being in Zefania like XML format, which can be downloaded from the following [link](https://web.archive.org/web/20181122034615/http://madabibliq.org/Concordance-malagasy/Linux_Bibliquest_Concordance_Malgache-2.1.0.tar.bz2) as a file in .tar.bz2 Linux compressed format. This contains an XML file called **malgache_malgache.xml** dated 2011-07-27 that was designed for use with [Bibliquest](https://www.bibliquest.net/) Bible software.
+One of the downloads on the **Concordance** page is particularly useful by being in [Zefania](https://www.zefaniabible.com/) like XML format, which can be downloaded from the following [link](https://web.archive.org/web/20181122034615/http://madabibliq.org/Concordance-malagasy/Linux_Bibliquest_Concordance_Malgache-2.1.0.tar.bz2) as a file in .tar.bz2 Linux compressed format. This contains an XML file called **malgache_malgache.xml** dated 2011-07-27 that was designed for use with [Bibliquest](https://www.bibliquest.net/) Bible software.
 
 The sister website **Madagascar pour Christ** now redirects to [Henoy Ny Baiboly](https://nybaiboly.net/).
 
