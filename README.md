@@ -73,6 +73,9 @@ This folder contains two Windows CMD files:
 
 #### TextPipe
 This folder contains some of my TextPipe filters used for analysis and conversion tasks within this project.
+* These are provided "as is" without any commitment to keeping them maintained.
+* TextPipe software can be obtained from [DataMystic](https://www.datamystic.com/).
+* I have a purchased license to use **TextPipe Standard** and I've been using **TextPipe** since 2001.
 
 NB. The filters were last edited in December 2018 but have been resaved in the new *human readable* JSON format.
 
