@@ -1,6 +1,6 @@
 # Malagasy-Bible-1865
 The **Malagasy Bible** translated in 1835 by [David Griffiths](https://en.wikipedia.org/wiki/David_Griffiths_(missionary)) and revised 1865-66
-* David Haslam (text/module developer) - 21 January 2021
+* David Haslam (text/module developer) - 22 January 2021
 
 ## Malagasy ##
 Ny Baiboly Malagasy voalohany dia navoaka tamin'ny 1835, nadika avy amin'ny misiônera Welsh David Griffiths (1792-1863) an'ny **London Missionary Society**. Niatrika ny fanitsiana voalohany nataony teo anelanelan'ny 1865 sy 1866.
@@ -61,9 +61,6 @@ The folder structure is described below.
 #### XML
 This folder contains the **Bibliquest** XML source text as well as the preprocessed file in which the Psalm titles and versification were adjusted.
 
-#### XML\Analysis
-This folder contains several tab delimited external replace lists called by the main TextPipe filter.
-
 #### Merged USFM
 This folder contains a single output file in USFM format that then was subsequently split into 66 separate files.
 
@@ -82,6 +79,9 @@ This folder contains some of my TextPipe filters used for analysis and conversio
 * I have a purchased license to use **TextPipe Standard** and I've been using **TextPipe** since 2001.
 
 NB. The filters were last edited in December 2018 but have been resaved in the new *human readable* JSON format.
+
+#### TextPipe\Lists
+This folder contains several tab delimited external **replace lists** called by the main TextPipe filter.
 
 #### OSIS
 This folder contains the OSIS XML file made from the USFM files using **adyeths\u2o** Python script.
