@@ -93,7 +93,7 @@ This folder contains the SWORD module **Mg1865x** made using the module tool cal
 
 ##### Analysis
 This folder contains text files relating to module build and testing.
-- **osis2mod.log** made during a temporary module rebuild - this has no entries - which illustrates that **German** v11n is a good match
+- **osis2mod.log** - this has no entries - which illustrates that **German** v11n is a good match
 - **Mg1865x.emptyvss.txt** is the output from Sword utility emptyvss - it lists 9 verses absent relative to the **German** v11n.
 
 ##### mods.d
