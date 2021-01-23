@@ -1,6 +1,6 @@
 # Malagasy-Bible-1865
 The **Malagasy Bible** translated in 1835 by [David Griffiths](https://en.wikipedia.org/wiki/David_Griffiths_(missionary)) and revised 1865-66
-* David Haslam (text/module developer) - 22 January 2021
+- David Haslam (text/module developer) - 23 January 2021
 
 ## Malagasy ##
 Ny Baiboly Malagasy voalohany dia navoaka tamin'ny 1835, nadika avy amin'ny misiônera Welsh David Griffiths (1792-1863) an'ny **London Missionary Society**. Niatrika ny fanitsiana voalohany nataony teo anelanelan'ny 1865 sy 1866.
@@ -14,7 +14,7 @@ The first Malagasy Bible was published in 1835, translated by Welsh missionary D
 ### Source texts ###
 The source text used as the starting point for this project was obtained on 2018-12-18 from the website of [MadaBibliq](https://web.archive.org/web/20181218163116/http://madabibliq.org:80/) that subsequently went AWOL.
 
-*The original URL is now occupied by a domain squatter, so the above link is to an archived copy on the **Wayback Machine**.*
+- *The original URL is now occupied by a domain squatter, so the above link is to an archived copy on the **Wayback Machine**.*
 
 One of the downloads on the **Concordance** page is particularly useful by being in [Zefania](https://www.zefaniabible.com/) like XML format, which can be downloaded from the following [link](https://web.archive.org/web/20181122034615/http://madabibliq.org/Concordance-malagasy/Linux_Bibliquest_Concordance_Malgache-2.1.0.tar.bz2) as a file in .tar.bz2 Linux compressed format. This contains an XML file called **malgache_malgache.xml** dated 2011-07-27 that was designed for use with [Bibliquest](https://www.bibliquest.net/) Bible software.
 
@@ -74,9 +74,9 @@ This folder contains two Windows CMD files:
 
 #### TextPipe
 This folder contains some of my TextPipe filters used for analysis and conversion tasks within this project.
-* These are provided "as is" without any commitment to keeping them maintained.
-* TextPipe software can be obtained from [DataMystic](https://www.datamystic.com/).
-* I have a purchased license to use **TextPipe Standard** and I've been using **TextPipe** since 2001.
+- These are provided "as is" without any commitment to keeping them maintained.
+- TextPipe software can be obtained from [DataMystic](https://www.datamystic.com/).
+- I have a purchased license to use **TextPipe Standard** and I've been using **TextPipe** since 2001.
 
 NB. The filters were last edited in December 2018 but have been resaved in the new *human readable* JSON format.
 
@@ -90,6 +90,11 @@ NB. The OSIS file was further post-processed without a change of filename.
 
 #### SWORD
 This folder contains the SWORD module **Mg1865x** made using the module tool called **osis2mod** from CrossWire.
+
+##### Analysis
+This folder contains text files relating to module build and testing.
+- **osis2mod.log** made during a temporary module rebuild - this has no entries - which illustrates that **German** v11n is a good match
+- **Mg1865x.emptyvss.txt** is the output from Sword utility emptyvss - it lists 9 verses absent relative to the **German** v11n.
 
 ##### mods.d
 This folder contains the module configuration file.
